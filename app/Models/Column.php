@@ -24,6 +24,16 @@ class Column extends Model
      */
     public function cards(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Card::class);
+        return $this->hasMany(Card::class)->orderBy('order');
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function delete(): ?bool
+    {
+        $this->cards()->delete();
+
+        return parent::delete();
     }
 }

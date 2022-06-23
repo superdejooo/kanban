@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Card;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class CardFactory extends Factory
         return [
             'title'         => $this->faker->unique()->streetName(),
             'description'   => $this->faker->unique()->sentence(),
-            'column_id'     => $this->faker->numberBetween(1, 4)
+            'column_id'     => $this->faker->numberBetween(1, 4),
+            'order'         => 1,
         ];
     }
 }

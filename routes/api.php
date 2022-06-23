@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ColumnController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 // kanban API
 
-Route::name('columns.')
-    ->group(function (){
-        Route::get('/columns', [ColumnController::class, 'index'])->name('index');
-        Route::get('/columns/{id}', [ColumnController::class, 'show'])->name('show');
-    });
+Route::put('/cards/move', [CardController::class, 'move']);
 
-Route::name('cards.')
-    ->group(function (){
-        Route::get('/cards/{id}', [CardController::class, 'show'])->name('show');
-    });
+Route::apiResource('/columns', ColumnController::class);
+Route::apiResource('/cards', CardController::class)->except('index');
+

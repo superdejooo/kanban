@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Column::factory(4)->create();
-        \App\Models\Card::factory(14)->create();
+        \App\Models\Column::factory(4)->create()->each(function ($column) {
+            //create 5 cards for each column, except for the last one
+            if ($column->id <= 3) {
+                \App\Models\Card::factory(1)->create(['column_id'=>$column->id]);
+            }
+        });
     }
 }

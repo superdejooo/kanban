@@ -16,7 +16,9 @@ class Card extends Model
      */
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'column_id',
+        'order',
     ];
 
     /**
